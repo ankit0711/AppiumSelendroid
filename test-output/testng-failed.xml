@@ -5,12 +5,10 @@
     <classes>
       <class name="testcases.android.SelendroidTestAppMainScreenTest">
         <methods>
-          <include name="verifyENButtonText"/>
-          <include name="verifyPagetitle"/>
-          <include name="verifyPageLabelLocalizationText"/>
+          <include name="setUpDriver"/>
           <include name="testENButtonFunctionality"/>
           <include name="setUp"/>
-          <include name="verifyPageHeader"/>
+          <include name="tearDown"/>
         </methods>
       </class> <!-- testcases.android.SelendroidTestAppMainScreenTest -->
     </classes>

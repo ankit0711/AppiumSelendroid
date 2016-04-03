@@ -1,4 +1,8 @@
 package base;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import io.appium.java_client.AppiumDriver;
 
 //This class defines common methods that would be used frequently by the application.
@@ -38,6 +42,11 @@ public class CommonMethods {
 		
 	}
 	
-	
+	//This method returns true if the web-element is displayed on page and returns false otherwise
+	public boolean isElementDisplayed(WebElement element){
+		if(element.isDisplayed())
+			return true;
+		return false;
+	}
 	
 }

@@ -3,16 +3,18 @@ package screens.android;
 import io.appium.java_client.AppiumDriver;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+
 import base.CommonMethods;
 
 public class SelendroidTestAppMainScreen extends CommonMethods {
 
-	public SelendroidTestAppMainScreen(AppiumDriver driver){
-		PageFactory.initElements(driver, this);
-	}
+//	public SelendroidTestAppMainScreen(){
+//		PageFactory.initElements(driver, this);
+//	}
 	
 	
 	@FindBy(how=How.ID,using="title") 
@@ -27,6 +29,15 @@ public class SelendroidTestAppMainScreen extends CommonMethods {
 	@FindBy(how=How.ID,using="buttonTest") 
 	WebElement enButton;
 	
+	@FindBy(how=How.ID,using="message") 
+    WebElement enButtonConfirmationLabel;
+	
+	@FindBy(how=How.ID,using="button1") 
+	WebElement enButtonConfirmationAgreeButton;
+	
+	@FindBy(how=How.ID,using="button2") 
+	WebElement enButtonConfirmationNoButton;
+		
 	@FindBy(how=How.ID,using="buttonStartWebview") 
 	WebElement chromeButton;
 	
@@ -83,6 +94,30 @@ public class SelendroidTestAppMainScreen extends CommonMethods {
 	
 	public void clickEnButton(){
 		enButton.click();
+	}
+	
+	public WebElement getEnButtonConfirmationLabel(){
+		return enButtonConfirmationLabel;
+	}
+	
+	public String getEnButtonConfirmationLabelText(){
+		return enButtonConfirmationLabel.getText();
+	}
+	
+	public void clickEnButtonConfirmationAgreeButton(){
+		 enButtonConfirmationAgreeButton.click();
+	}
+	
+	public String getEnButtonConfirmationAgreeButtonText(){
+		return enButtonConfirmationAgreeButton.getText();
+	}
+	
+	public void clickEnButtonConfirmationNoButton(){
+		 enButtonConfirmationNoButton.click();
+	}
+	
+	public String getEnButtonConfirmationNoButtonText(){
+		return enButtonConfirmationNoButton.getText();
 	}
 	
 	public void clickChromeButton(){
