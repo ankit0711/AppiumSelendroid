@@ -82,7 +82,7 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		Assert.assertEquals(mainscreen.getEnButtonConfirmationAgreeButtonText(), agreeButtonText);
 		Assert.assertEquals(mainscreen.getEnButtonConfirmationNoButtonText(), noButtonText);
 		mainscreen.clickEnButtonConfirmationNoButton();
-		Assert.assertEquals(commonMethods.isElementDisplayed(mainscreen.getEnButtonConfirmationLabel()), false);
+		Assert.assertEquals(mainscreen.isEnButtonConfirmationLabelDisplayed(), false);
 		mainscreen.clickEnButton();
 		mainscreen.clickEnButtonConfirmationAgreeButton();
 		

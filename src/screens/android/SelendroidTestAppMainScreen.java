@@ -96,8 +96,8 @@ public class SelendroidTestAppMainScreen extends CommonMethods {
 		enButton.click();
 	}
 	
-	public WebElement getEnButtonConfirmationLabel(){
-		return enButtonConfirmationLabel;
+	public boolean isEnButtonConfirmationLabelDisplayed(){
+		return isElementDisplayed(enButtonConfirmationLabel);
 	}
 	
 	public String getEnButtonConfirmationLabelText(){
