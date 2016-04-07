@@ -3,6 +3,7 @@ package screens.android;
 import io.appium.java_client.AppiumDriver;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.server.handler.GetElementText;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -49,6 +50,18 @@ public class SelendroidTestAppMainScreen extends CommonMethods {
 	
 	@FindBy(how=How.ID,using="waitingButtonTest") 
 	WebElement showProgressBarForAWhileButton;
+	//sdewrkwefjkhsdkfhksdhfksdjfhsdfffffffffffffffffffffffffffffffffffffffffffffffffffff
+	@FindBy(how=How.ID,using="message") 
+	WebElement waitingDialogHeaderProgressBar;
+	
+	@FindBy(how=How.ID,using="progress") 
+	WebElement progressBar;
+	
+	@FindBy(how=How.ID,using="progress_percent") 
+	WebElement progressPercentProgressBar;
+	
+	@FindBy(how=How.ID,using="progress_number") 
+	WebElement progressNumberProgressBar;
 	
 	@FindBy(how=How.ID,using="input_adds_check_box") 
 	WebElement iAcceptAddsCheckbox;
@@ -76,24 +89,23 @@ public class SelendroidTestAppMainScreen extends CommonMethods {
 	
 	
 	public String getPageTitle(){
-		System.out.println(pageTitle.getText());
-		return pageTitle.getText();
+		return getElementText(pageTitle);
 	}
 	
 	public String getPageHeader(){
-		return pageHeader.getText();
+		return  getElementText(pageHeader);
 	}
 	
 	public String getPageLabelLocalizationText(){
-		return pageLabelLocalization.getText();
+		return getElementText(pageLabelLocalization);
 	}
 	
 	public String getENButtonText(){
-		return enButton.getText();
+		return getElementText(enButton);
 	}
 	
 	public void clickEnButton(){
-		enButton.click();
+		clickElement(enButton);
 	}
 	
 	public boolean isEnButtonConfirmationLabelDisplayed(){
@@ -101,70 +113,102 @@ public class SelendroidTestAppMainScreen extends CommonMethods {
 	}
 	
 	public String getEnButtonConfirmationLabelText(){
-		return enButtonConfirmationLabel.getText();
+		return getElementText(enButtonConfirmationLabel);
 	}
 	
 	public void clickEnButtonConfirmationAgreeButton(){
-		 enButtonConfirmationAgreeButton.click();
+		clickElement(enButtonConfirmationAgreeButton);
 	}
 	
-	public String getEnButtonConfirmationAgreeButtonText(){
-		return enButtonConfirmationAgreeButton.getText();
+	public String getEnButtonConfirmationAgreeButtonText(){		
+		return getElementText(enButtonConfirmationAgreeButton);
 	}
 	
 	public void clickEnButtonConfirmationNoButton(){
-		 enButtonConfirmationNoButton.click();
+		clickElement(enButtonConfirmationNoButton);
 	}
 	
 	public String getEnButtonConfirmationNoButtonText(){
-		return enButtonConfirmationNoButton.getText();
+		return getElementText(enButtonConfirmationNoButton);
 	}
 	
 	public void clickChromeButton(){
-		chromeButton.click();
+		clickElement(chromeButton);
 	}
 	
 	public void clickUserRegisterationButton(){
-		userRegisterationButton.click();
+		clickElement(userRegisterationButton);
 	}
 	
 	public void enterTextInMyTextField(String text){
-		myTextField.sendKeys(text);
+		EnterText(myTextField, text);
+	}
+	
+	public String getTextMyTextField(){
+		return getElementText(myTextField);
 	}
 	
 	public void clickShowProgressBarForAWhileButton(){
-		showProgressBarForAWhileButton.click();
+		clickElement(showProgressBarForAWhileButton);
+	}
+	
+	public String getTextshowProgressBarForAWhileButton(){
+		return getElementText(showProgressBarForAWhileButton);
+	}
+	
+	public String getTextProgressDialogHeader(){
+		return getElementText(waitingDialogHeaderProgressBar);
+	}
+	
+	public boolean isProgressBarDisplayed(){
+		return isElementDisplayed(progressBar);
+	}
+	
+	public String getTextProgressPercent(){
+		return getElementText(progressPercentProgressBar);
+	}
+	
+	public String getTextProgressNumber(){
+		return getElementText(progressNumberProgressBar);
 	}
 	
 	public void clickiIAcceptAddsCheckbox(){
-		iAcceptAddsCheckbox.click();
+		clickElement(iAcceptAddsCheckbox);
+	}
+	
+	public String getIAcceptAddsCheckboxText(){
+		return getElementText(iAcceptAddsCheckbox);
+	}
+	
+	public boolean isIAcceptAddsCheckboxSelected(){
+		return isCheckBoxSelected(iAcceptAddsCheckbox);
 	}
 	
 	public void clickDisplayTextViewButton(){
-		displayTextViewButton.click();
+		clickElement(displayTextViewButton);
 	}
 	
 	public void clickDisplaysAToastButton(){
-		displaysAToastButton.click();
+		clickElement(displaysAToastButton);
 	}
 	
 	public void clickDisplayPopUpWindowButton(){
-		displayPopUpWindowButton.click();
+		clickElement(displayPopUpWindowButton);
 	}
 	
 	public void clickPressToThrowUnhandledExceptionButton(){
-		pressToThrowUnhandledExceptionButton.click();
+		clickElement(pressToThrowUnhandledExceptionButton);
 	}
 	
 	public void enterTextTypeToThrowExceptionTextField(String text){
-		typeToThrowExceptionTextField.sendKeys(text);
+		EnterText(typeToThrowExceptionTextField, text);
 	}
 	
 	public String getTextJapaneseLabel(){
-		return japaneseLabel.getText();
+		return getElementText(japaneseLabel);
 	}
 	
 	public void clickDisplayAndFocusOnLayoutButton(){
-		displayAndFocusOnLayoutButton.click();
+		clickElement(displayAndFocusOnLayoutButton);
 	}
 }
