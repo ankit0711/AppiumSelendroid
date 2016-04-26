@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="lib/java-client-3.1.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/java-client-3.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/selenium-server-standalone-2.47.1.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
