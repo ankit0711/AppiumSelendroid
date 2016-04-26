@@ -50,7 +50,7 @@ public class SelendroidTestAppMainScreen extends CommonMethods {
 	
 	@FindBy(how=How.ID,using="waitingButtonTest") 
 	WebElement showProgressBarForAWhileButton;
-	//sdewrkwefjkhsdkfhksdhfksdjfhsdfffffffffffffffffffffffffffffffffffffffffffffffffffff
+
 	@FindBy(how=How.ID,using="message") 
 	WebElement waitingDialogHeaderProgressBar;
 	
