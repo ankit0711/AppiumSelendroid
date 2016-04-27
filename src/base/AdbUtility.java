@@ -5,23 +5,24 @@ import org.junit.Assert;
 
 import readProperties.LoadAndroidPropertiesFile;
 import utils.ExecuteShell;
+import utils.LogUtil;
 
 
-public class AdbUtility extends CommonMethods{
+public class AdbUtility{
 
 	public ExecuteShell executeShellCommand = new ExecuteShell();
 
 	public void resumeApp(String packageName,String activityName) throws InterruptedException{
 		System.out.println("Resume app");
-		String runComponent=packageName+'/'+activityName;
+		String runComponent=packageName+'/'+activityName;		
 		executeShellCommand.ExecuteShellCommand("am","start",runComponent);
 		Thread.sleep(4000);
 	}
 
 	public void launchApp(String packageName,String activityName) throws InterruptedException{
-		System.out.println("Launching app");
+		LogUtil.info("Launching app");
 		String runComponent=packageName+'/'+activityName;
-		executeShellCommand.ExecuteShellCommand("am","start","-n",runComponent);
+		executeShellCommand.ExecuteShellCommand("adb shell am","start","-n",runComponent);
 		Thread.sleep(4000);
 	}
 
@@ -29,16 +30,9 @@ public class AdbUtility extends CommonMethods{
 		executeShellCommand.ExecuteShellCommand("am", "force-stop",packageName);
 	}
 
-	public void launchSpecificActivity(String AppPackage,String activity) throws InterruptedException{
-		System.out.println("Launching App");
-		String packageName=AppPackage;
-		String activityName=activity;
-		launchApp(packageName, activityName);
-	}
-
 	public String getLogs() throws Exception{
 		System.out.println("Getting Logs");
-		return	executeShellCommand.executeCommand("logcat | grep "+ executeShellCommand.getAppPid());
+		return	executeShellCommand.executeCommand("adb logcat | grep "+ executeShellCommand.getAppPid());
 	}
 	/*****************************************************************************************************************************************************************
 	 *

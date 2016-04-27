@@ -1,10 +1,14 @@
 package base;
+import java.util.logging.Logger;
+
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.mobile.NetworkConnection;
 import org.openqa.selenium.mobile.NetworkConnection.ConnectionType;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.seleniumhq.jetty7.io.Connection;
 
 import io.appium.java_client.AppiumDriver;
@@ -12,40 +16,55 @@ import io.appium.java_client.MobileDriver;
 import io.appium.java_client.NetworkConnectionSetting;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.ios.IOSDriver;
 import readProperties.LoadAndroidPropertiesFile;
 import utils.ExecuteShell;
+import utils.LogUtil;
 
 //This class defines common methods that would be used frequently by the test scripts.
 
 public class CommonMethods {
 
+	AdbUtility adb = new AdbUtility();
 	public AppiumDriver driver=  TestBase.getDriver();
 	ExecuteShell shell = new ExecuteShell();
-	//This method hides the keyboard.
+
+/*==============================================================================================================================
+	 Hides the keyboard if it is showing.
+	 @param: none
+	 @return: void
+*==============================================================================================================================*/	
 	public void hideKeyboard(){
 		try{
-			System.out.println("Hiding keyboard");
+			LogUtil.info("Hiding keyboard");
 			driver.hideKeyboard();
+			driver.getKeyboard();
 		}
 		catch(WebDriverException e){
 			e.printStackTrace();
 		}
 	}
-		
-	//This method gets the keyboard.
-	public void getKeyboard(){
+
+/*==============================================================================================================================
+	 This method gets the keyboard.
+	 @param: none
+*==============================================================================================================================*/	
+	
+	public Keyboard getKeyboard(){
 		try{
-			System.out.println("Getting keyboard");
-			driver.getKeyboard();
+			LogUtil.info("Getting keyboard");
+			return driver.getKeyboard();
 		}
 		catch(WebDriverException e){
 			e.printStackTrace();
+			return null;
 		}
 	}	
 	
 	//Used to press device menu button. -Works for android only
 	public void pressDeviceMenuButton(){
 		try{
+			LogUtil.info("Pressing Device MENU key");
 			((AndroidDriver)driver).sendKeyEvent(AndroidKeyCode.MENU);			
 		}
 		catch(WebDriverException e){
@@ -56,6 +75,7 @@ public class CommonMethods {
 	//Used to press device menu button. -Works for android only
 	public void pressDeviceHomeButton(){
 		try{
+			LogUtil.info("Pressing Device HOME key");
 			((AndroidDriver)driver).sendKeyEvent(AndroidKeyCode.HOME);			
 		}
 		catch(WebDriverException e){
@@ -66,10 +86,10 @@ public class CommonMethods {
 	//Sets device to airplane mode- Works for android only
 	public void enableAirplaneMode(){			
 		try{
-			System.out.println("Turning On Airplane Mode");
+			LogUtil.info("Turning On Airplane Mode");
 			shell.executeCommand("adb shell settings put global airplane_mode_on 1");
 			shell.executeCommand("adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state true");	
-			System.out.println("Airplane mode On");
+			LogUtil.info("Airplane mode On");
 			Thread.sleep(3000);
 		}
 		catch(Exception e){
@@ -80,36 +100,36 @@ public class CommonMethods {
 	//Disable's airplane mode- Works for android only
 	public void disableAirplaneMode(){			
 		try{
-			System.out.println("Turning Off Airplane Mode");
+			LogUtil.info("Turning Off Airplane Mode");
 			shell.executeCommand("adb shell settings put global airplane_mode_on 0");
 			shell.executeCommand("adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state false");	
-			System.out.println("Airplane mode Off");
+			LogUtil.info("Airplane mode Off");
 			Thread.sleep(3000);
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		}
+	}
 	
 	//Enable WiFi on the device- Works for android only
 	public void enableWiFi(){
 			try{
-				System.out.println("Turning ON WiFi");
+				LogUtil.info("Turning ON WiFi");
 				shell.executeCommand("adb shell am start -n io.appium.settings/.Settings -e wifi on");
-				System.out.println("WiFi is ON now");	
+				LogUtil.info("WiFi is ON now");	
 				Thread.sleep(3000);
 			}
 			catch(Exception e){
 				e.printStackTrace();
 			}
-		}
+	}
 	
 	//Disable WiFi on the device- Works for android only
 	public void disableWiFi(){
 		try{
-			System.out.println("Turning OFF WiFi");
+			LogUtil.info("Turning OFF WiFi");
 			shell.executeCommand("adb shell am start -n io.appium.settings/.Settings -e wifi off");
-			System.out.println("WiFi is OFF now");	
+			LogUtil.info("WiFi is OFF now");	
 			Thread.sleep(3000);
 		}
 		catch(Exception e){
@@ -120,9 +140,9 @@ public class CommonMethods {
 	//Enable Mobile Data on the device- Works for android only
 	public void enableMobileData(){
 		try{
-			System.out.println("Enabling Mobile Data");
+			LogUtil.info("Enabling Mobile Data");
 			shell.executeCommand("adb shell am start -n io.appium.settings/.Settings -e data on");
-			System.out.println("Mobile Data is ON now");
+			LogUtil.info("Mobile Data is ON now");
 			Thread.sleep(3000);
 		}
 		catch(Exception e){
@@ -133,9 +153,9 @@ public class CommonMethods {
 	//Disable Mobile Data on the device- Works for android only
 	public void disableMobileData(){
 		try{
-			System.out.println("Turning OFF Mobile Data");
+			LogUtil.info("Turning OFF Mobile Data");
 			shell.executeCommand("adb shell am start -n io.appium.settings/.Settings -e data off");
-			System.out.println("Mobile Data is OFF now");
+			LogUtil.info("Mobile Data is OFF now");
 			Thread.sleep(3000);
 		}
 		catch(Exception e){
@@ -143,42 +163,39 @@ public class CommonMethods {
 		}
 	}
 		
-	//Get device current network connection -Works for android only
-	public String getNetworkConnection(){
-		NetworkConnection myDriver = (NetworkConnection) driver;
-		try{
-			if(myDriver.getNetworkConnection()==ConnectionType.AIRPLANE_MODE)
-				return "AirplaneMode";
-			if(myDriver.getNetworkConnection()==ConnectionType.WIFI)
-				return "WiFi";
-			if(myDriver.getNetworkConnection()==ConnectionType.DATA)
-				return "Data";					
-		}
-		catch(WebDriverException e){
-			e.printStackTrace();
-		}
-		return "Connection not found";
-	}
-		
 	//Used to lock the device screen
 	public void lockScreen(){
-		driver.lockScreen(1);
+		try{
+			LogUtil.info("Trying to lock the device");
+			driver.lockScreen(3);
+			LogUtil.info("Device locked");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 			
 	//Used to unlock the device screen.
 	public void unlockScreen(){
-			
+		try{
+			LogUtil.info("Trying to unlock the device");
+			adb.launchApp("io.appium.unlock", "io.appium.unlock.Unlock");
+			LogUtil.info("Device unlocked");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	//Used to change device orientation to Portrait
 	public void changeOrientationToPortrait(){
 		try{
-			System.out.println("Changing device orientation to Portrait");
+			LogUtil.info("Changing device orientation to Portrait");
 			driver.rotate(ScreenOrientation.PORTRAIT);
-			System.out.println("Changed device orientation to Portrait");
+			LogUtil.info("Changed device orientation to Portrait");
 			}
 		catch(WebDriverException e){
-			System.out.println("Unable to change device orientation to Portrait");
+			LogUtil.info("Unable to change device orientation to Portrait");
 			e.printStackTrace();
 			}
 	}
@@ -186,40 +203,67 @@ public class CommonMethods {
 	//Used to change device orientation to Landscape
 	public void changeOrientationToLandscape(){
 		try{
-			System.out.println("Changing device orientation to Landscape");
+			LogUtil.info("Changing device orientation to Landscape");
 			driver.rotate(ScreenOrientation.LANDSCAPE);
-			System.out.println("Changed device orientation to Landscape");
+			LogUtil.info("Changed device orientation to Landscape");
 			}
 		catch(Exception e){
-			System.out.println("Unable to change device orientation to Landscape");
+			LogUtil.info("Unable to change device orientation to Landscape");
 			e.printStackTrace();
 		}
 	}
 	
 	//This method returns true if the app with provided package name is launched ,False otherwise.	
 	public boolean isAppLaunched(){
-		System.out.println("Checking if the app is launched");
+		LogUtil.info("Checking if the app is launched");
 		if(driver.getPageSource().contains(LoadAndroidPropertiesFile.APP_PACKAGE_NAME)){
-			System.out.println("App is lauched");
+			LogUtil.info("App is lauched");
 			return true;
 		}
 		else{
-			System.out.println("App was not launched");	
+			LogUtil.info("App was not launched");	
 			return false;	
 		}
 	}
 		
-	//Used to navigate to home activity.
-	public void goToHomeScreen(){
-		
+	//Launch the application in test.
+	public void launchAppInTest(){
+		try{
+		LogUtil.info("Launching the app");	
+		adb.launchApp(LoadAndroidPropertiesFile.APP_PACKAGE_NAME, LoadAndroidPropertiesFile.ACTIVITY_NAME);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	//Shake device - Works for iOS device.
+	public void shakeDevice(){
+		try{
+			((IOSDriver)driver).shake();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	//This methods performs swipe operation
+	public void swipe(int startx,int starty, int endx, int endy, int duration){
+		try{
+			LogUtil.info("Performing swipe operation");
+			driver.swipe(startx, starty, endx, endy, duration);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	//This method takes a WebElement as argument and clicks on it.
 	public void clickElement(WebElement element){
 		try{
-		System.out.println("Clicking the element");	
+		LogUtil.info("Clicking the element");	
 		element.click();
-		System.out.println("Successfully Clicked");	
+		LogUtil.info("Successfully Clicked");	
 		}
 		catch(NoSuchElementException e){
 			e.printStackTrace();
@@ -229,11 +273,11 @@ public class CommonMethods {
 	//This method takes a WebElement and a String as argument and enters the string in the WebElement.
 	public void EnterText(WebElement element,String str){
 		try{
-			System.out.println("Entering text : " + str +" in the text field.");
+			LogUtil.info("Entering text : " + str +" in the text field.");
 			element.click();
 			element.clear();
 			element.sendKeys(str);
-			System.out.println("Successfully entered text");	
+			LogUtil.info("Successfully entered text");	
 		}
 		catch(NoSuchElementException e){
 			e.printStackTrace();
@@ -244,9 +288,9 @@ public class CommonMethods {
 	public String getElementText(WebElement element){
 		String text="";
 		try{
-		System.out.println("Getting Element Text");	
+		LogUtil.info("Getting Element Text");	
 		text=element.getText();
-		System.out.print( "   "+ text);
+		LogUtil.info( "Actual text:"+ text);
 		}
 		catch(NoSuchElementException e){
 			e.printStackTrace();
@@ -257,13 +301,13 @@ public class CommonMethods {
 	//This method returns true if the web-element is displayed on page and returns false otherwise
 	public boolean isElementDisplayed(WebElement element){
 		try{
-		System.out.println("Checking if the element is displayed");	
+		LogUtil.info("Checking if the element is displayed");	
 			if(element.isDisplayed()){
-				System.out.println("Element Displayed");
+				LogUtil.info("Element Displayed");
 				return true;		
 			}
 			else{
-				System.out.println("Element is not Displayed");
+				LogUtil.info("Element is not Displayed");
 				return false;
 			}
 		}
@@ -276,13 +320,13 @@ public class CommonMethods {
 	public boolean isCheckBoxSelected(WebElement element){
 		boolean isCheckBoxSelected=false;	
 		try{
-		System.out.println("Checking if check-box is selected");	
+		LogUtil.info("Checking if check-box is selected");	
 			if(getAttribute(element,"checked").equals("true")){
 				isCheckBoxSelected= true;
-				System.out.println("Check-box was in slelected state");
+				LogUtil.info("Check-box was in slelected state");
 			}
 			else
-				System.out.println("Check-box was not in selected state");
+				LogUtil.info("Check-box was not in selected state");
 		}
 		catch(Exception e){
 			e.printStackTrace(); 
@@ -294,9 +338,9 @@ public class CommonMethods {
 	public String getAttribute(WebElement element,String attribute){
 		String resultAttribute="";
 		try{
-			System.out.println("Getting atribute: "+attribute +" of the element");
+			LogUtil.info("Getting atribute: "+attribute +" of the element");
 			resultAttribute= element.getAttribute(attribute);
-			System.out.println("Attribute value: " + resultAttribute);
+			LogUtil.info("Attribute value: " + resultAttribute);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -307,9 +351,9 @@ public class CommonMethods {
 	//This method switches driver to the first frame on the page
 	public void switchFrame(){
 		try{
-		System.out.println("Switcihng to frame 0");	
+		LogUtil.info("Switcihng to frame 0");	
 		driver.switchTo().frame(0);
-		System.out.println("Successfully switched to frame 0");
+		LogUtil.info("Successfully switched to frame 0");
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -319,9 +363,9 @@ public class CommonMethods {
 	//This method switches driver back to default frame.
 	public void switchToDefaultContent(){
 		try{
-		System.out.println("Switching to default frame");	
+		LogUtil.info("Switching to default frame");	
 		driver.switchTo().defaultContent();
-		System.out.println("Successfully switched to default frame");
+		LogUtil.info("Successfully switched to default frame");
 		}
 		catch(Exception e){
 			e.printStackTrace();

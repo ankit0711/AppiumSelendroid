@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import readProperties.LoadAndroidPropertiesFile;
+
 public class ExecuteShell {
 
 
@@ -14,7 +16,7 @@ public class ExecuteShell {
 		for(int counter=0; counter < parameters.length ; counter++){
 			command = command + parameters[counter] + " ";
 		}
-		System.out.println("COMMAND "+ command);
+		LogUtil.info("COMMAND: "+ command);
 		executeCommand(command);
 
 	}
@@ -30,11 +32,11 @@ public class ExecuteShell {
 			while ((line = input.readLine())!= null) {
 
 				output.append(line + "\n");
-				System.out.println(line);
+				LogUtil.info(line);
 
 			}
 		} catch (Exception e) {
-			System.out.println("Unable to Execute Command "+ command);
+			LogUtil.info("Unable to Execute Command "+ command);
 			e.printStackTrace();
 		}
 
@@ -43,14 +45,14 @@ public class ExecuteShell {
 
 	public String getAppPid()
 	{
-		System.out.println("Getting device id: ");
+		LogUtil.info("Getting device id: ");
 
 		Process p;
 		String line = "";
 		String id = "";
 		try {
 
-			String command = "ps | grep com.bsb.hike";
+			String command = "ps | grep "+ LoadAndroidPropertiesFile.APP_PACKAGE_NAME;
 			p = Runtime.getRuntime().exec(command);
 			BufferedReader input = new BufferedReader(new InputStreamReader(
 					p.getInputStream()));

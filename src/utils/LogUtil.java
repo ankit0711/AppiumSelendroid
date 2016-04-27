@@ -1,15 +1,22 @@
 package utils;
 
 import org.apache.log4j.Appender;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Layout;
 import org.apache.log4j.Logger;
+import org.apache.log4j.spi.ErrorHandler;
+import org.apache.log4j.spi.Filter;
+import org.apache.log4j.spi.LoggingEvent;
 
 
 public class LogUtil {
 	private static Logger logger = Logger.getLogger(LogUtil.class.getName());
 
 	public static void startTestCase(String className,String testCaseID){
+		logger.info("                                                                                                                             ");
 		logger.info("=============================================================================================================================");
 		logger.info("Starting execution of test case: "+ testCaseID + " of Class: "+ className);
+		logger.info("=============================================================================================================================");
 	}
 	
 	public static void endTestCase() {

@@ -56,7 +56,4 @@ public class AndroidCapabilities {
 		return driver;
 	}
 	
-	public static void launchMyApp(){
-		driver.launchApp();
-	}
 }
