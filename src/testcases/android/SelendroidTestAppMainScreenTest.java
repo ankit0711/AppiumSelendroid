@@ -19,10 +19,10 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		mainscreen=PageFactory.initElements(driver, SelendroidTestAppMainScreen.class);
 	}
 	
-	/*
-	 Verify the screen title.
-	 The expected title is "selendroid-test-app"
-	 */	
+	/*==============================================================================================================================
+	 *1)Verify the screen title.
+	 *The expected title is "selendroid-test-app"
+	 *==============================================================================================================================*/
 	@Test(priority=0,enabled=false,description="Verifying the Screen Title")
 	public void verifyPagetitle(){
 		try{
@@ -37,10 +37,10 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		}
 	}
 	
-	/*
-	 Verify the Label at the top of the page
-	 Expected text for label is "Hello Default Locale, Selendroid-test-app!"
-	 */
+	/*==============================================================================================================================
+	 *1)Verify the Label at the top of the page
+	 *Expected text for label is "Hello Default Locale, Selendroid-test-app!"
+	 *==============================================================================================================================*/
 	@Test(priority=1,enabled=false,description="Verifying label at the top of the page")
 	public void verifyPageHeader(){
 		try{
@@ -55,10 +55,10 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		}
 	}
 	
-	/*
-	 Verify the label for Localization
-	 Expected text for label is "Localization (L10n) locator test"
-	 */
+	/*==============================================================================================================================
+	 *1)Verify the label for Localization
+	 *Expected text for label is "Localization (L10n) locator test"
+	 *==============================================================================================================================*/
 	@Test(priority=2,enabled=false,description="Verifying the localization label")
 	public void verifyPageLabelLocalizationText(){
 		try{
@@ -73,10 +73,10 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		}
 	}
 	
-	/*
-	 Verify the EN Button text.
-	 Expected text on the button is EN Button.
-	 */
+	/*==============================================================================================================================
+	 *1)Verify the EN Button text.
+	 *Expected text on the button is EN Button.
+	 *==============================================================================================================================*/
 	@Test(priority=3,enabled=false,description="Verifying the EN Button Text")
 	public void verifyENButtonText(){
 		try{
@@ -91,15 +91,15 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		}
 	}
 	
-	/*
-	 1.Click on the EN Button.
-	 2.Verify if the confirmation pop up is shown with Correct label and buttons.(Expected Label="This will end the activity",Expected buttons: "I agree" and "No,No")
-	 3.Click on the "No,No" button.
-	 4.Verify if the confirmation message is not shown anymore.
-	 5.Click on the EN Button again.
-	 6.Click on "I agree" button
-	 7.Verify if the app gets dismissed.
-	 */
+	/*==============================================================================================================================
+	 *1.Click on the EN Button.
+	 *2.Verify if the confirmation pop up is shown with Correct label and buttons.(Expected Label="This will end the activity",Expected buttons: "I agree" and "No,No")
+	 *3.Click on the "No,No" button.
+	 *4.Verify if the confirmation message is not shown anymore.
+	 *5.Click on the EN Button again.
+	 *6.Click on "I agree" button
+	 *7.Verify if the app gets dismissed.
+	 *==============================================================================================================================*/
 	@Test(priority=4,enabled=false,description="Verifying the EN Button functionality")
 	public void testENButtonFunctionality(){
 		try{
@@ -111,11 +111,11 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		Assert.assertEquals(mainscreen.getEnButtonConfirmationNoButtonText(), noButtonText);
 		mainscreen.clickEnButtonConfirmationNoButton();
 		Assert.assertEquals(mainscreen.isEnButtonConfirmationLabelDisplayed(), false);
-		//mainscreen.clickEnButton();
-		//mainscreen.clickEnButtonConfirmationAgreeButton();
-		//Assert.assertEquals(appiumMethods.isAppLaunched(), false);
-		//AndroidCapabilities.launchMyApp();
-		//System.out.println(driver.getPageSource().contains(LoadAndroidPropertiesFile.APP_PACKAGE_NAME));
+		mainscreen.clickEnButton();
+		mainscreen.clickEnButtonConfirmationAgreeButton();
+		Assert.assertEquals(mainscreen.isAppLaunched(), false);
+		mainscreen.launchAppInTest();
+		Assert.assertEquals(mainscreen.isAppLaunched(), true);
 		LogUtil.endTestCase();
 		}
 		catch(Exception e){
@@ -123,12 +123,12 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		}
 	}
 	
-	/*
-	 1.Click in the text field.
-	 2.Verify that the text field does not have any text.
-	 3.Enter some text in the text field.
-	 4.Verify that the text is being displayed in the text field.
-	 */
+	/*==============================================================================================================================
+	 *1)Click in the text field.
+	 *2)Verify that the text field does not have any text.
+	 *3)Enter some text in the text field.
+	 *4)Verify that the text is being displayed in the text field.
+	 *==============================================================================================================================*/
 	@Test(priority=5,enabled=false,description="Verifying the text field functionality")
 	public void myTextFieldTest(){
 		try{
@@ -145,13 +145,13 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		}
 	}
 	
-	/*
-	  Verify that the 'I accept adds' check-box is selected by default.
-	  Click on the check-box to de-select it.
-	  Verify that the check-box is de-selected now.
-	  Click on the check-box to select it.
-	  Verify that the check-box is in selected state now.
-	 */
+	/*==============================================================================================================================
+	 *1)Verify that the 'I accept adds' check-box is selected by default.
+	 *2)Click on the check-box to de-select it.
+	 *3)Verify that the check-box is de-selected now.
+	 *4)Click on the check-box to select it.
+	 *5)Verify that the check-box is in selected state now.
+	 *==============================================================================================================================*/
 	@Test(priority=6,enabled=false,description="Verifying the 'I accept' check-box functionality")
 	public void testIAcceptAddsCheckBox(){
 		try{
@@ -187,19 +187,11 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 	public void testCommonMethods(){
 		try{
 		LogUtil.startTestCase("SelendroidTestAppMainScreenTest", "Verifying common Methods");	
-		Thread.sleep(2000);
-		mainscreen.enableAirplaneMode();
-		Thread.sleep(2000);
-		mainscreen.disableAirplaneMode();
-		Thread.sleep(2000);
-		mainscreen.enableWiFi();
-		Thread.sleep(2000);
-		mainscreen.disableWiFi();
-		Thread.sleep(2000);
-		mainscreen.disableMobileData();
-		Thread.sleep(2000);
-		mainscreen.enableMobileData();
-		Thread.sleep(2000);
+		mainscreen.enterTextInMyTextField("Hello");
+		mainscreen.hideKeyboard();
+		Thread.sleep(3000);
+		mainscreen.getKeyboard();
+		Thread.sleep(3000);
 		LogUtil.endTestCase();
 		}
 		catch(Exception e){

@@ -30,9 +30,9 @@ public class CommonMethods {
 	ExecuteShell shell = new ExecuteShell();
 
 /*==============================================================================================================================
-	 Hides the keyboard if it is showing.
-	 @param: none
-	 @return: void
+*	 Hides the keyboard if it is showing.																					   *
+*	 @param: none																											   *
+*	 @return: void																									           *
 *==============================================================================================================================*/	
 	public void hideKeyboard(){
 		try{
@@ -48,6 +48,7 @@ public class CommonMethods {
 /*==============================================================================================================================
 	 This method gets the keyboard.
 	 @param: none
+	 @return:Keyboard
 *==============================================================================================================================*/	
 	
 	public Keyboard getKeyboard(){
@@ -61,7 +62,12 @@ public class CommonMethods {
 		}
 	}	
 	
-	//Used to press device menu button. -Works for android only
+
+/*==============================================================================================================================
+*	 Used to press device Menu button. -Works for android only																   *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/		
 	public void pressDeviceMenuButton(){
 		try{
 			LogUtil.info("Pressing Device MENU key");
@@ -72,7 +78,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//Used to press device menu button. -Works for android only
+	
+/*==============================================================================================================================
+*	 Used to press device Home button. -Works for android only																   *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/	
 	public void pressDeviceHomeButton(){
 		try{
 			LogUtil.info("Pressing Device HOME key");
@@ -83,7 +94,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//Sets device to airplane mode- Works for android only
+
+/*==============================================================================================================================
+*	 Sets device to airplane mode- Works for android only																       *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void enableAirplaneMode(){			
 		try{
 			LogUtil.info("Turning On Airplane Mode");
@@ -97,7 +113,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//Disable's airplane mode- Works for android only
+	
+/*==============================================================================================================================
+*	 Disable's airplane mode- Works for android only																           *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void disableAirplaneMode(){			
 		try{
 			LogUtil.info("Turning Off Airplane Mode");
@@ -111,7 +132,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//Enable WiFi on the device- Works for android only
+
+/*==============================================================================================================================
+*	 Enable WiFi on the device- Works for android only																           *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void enableWiFi(){
 			try{
 				LogUtil.info("Turning ON WiFi");
@@ -124,7 +150,12 @@ public class CommonMethods {
 			}
 	}
 	
-	//Disable WiFi on the device- Works for android only
+
+/*==============================================================================================================================
+*	 Disable WiFi on the device- Works for android only																           *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void disableWiFi(){
 		try{
 			LogUtil.info("Turning OFF WiFi");
@@ -137,7 +168,12 @@ public class CommonMethods {
 		}
 	}
 		
-	//Enable Mobile Data on the device- Works for android only
+	
+/*==============================================================================================================================
+*	 Enable Mobile Data on the device- Works for android only																   *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void enableMobileData(){
 		try{
 			LogUtil.info("Enabling Mobile Data");
@@ -150,7 +186,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//Disable Mobile Data on the device- Works for android only
+	
+/*==============================================================================================================================
+*	 Disable Mobile Data on the device- Works for android only																   *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void disableMobileData(){
 		try{
 			LogUtil.info("Turning OFF Mobile Data");
@@ -163,7 +204,12 @@ public class CommonMethods {
 		}
 	}
 		
-	//Used to lock the device screen
+
+/*==============================================================================================================================
+*	 Used to lock the device screen																                               *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void lockScreen(){
 		try{
 			LogUtil.info("Trying to lock the device");
@@ -175,7 +221,12 @@ public class CommonMethods {
 		}
 	}
 			
-	//Used to unlock the device screen.
+	
+/*==============================================================================================================================
+*	 Used to unlock the device screen.																                           *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void unlockScreen(){
 		try{
 			LogUtil.info("Trying to unlock the device");
@@ -187,7 +238,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//Used to change device orientation to Portrait
+
+/*==============================================================================================================================
+*	 Used to change device orientation to Portrait.																               *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void changeOrientationToPortrait(){
 		try{
 			LogUtil.info("Changing device orientation to Portrait");
@@ -200,7 +256,12 @@ public class CommonMethods {
 			}
 	}
 			
-	//Used to change device orientation to Landscape
+	
+/*==============================================================================================================================
+*	 Used to change device orientation to Landscape.																           *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void changeOrientationToLandscape(){
 		try{
 			LogUtil.info("Changing device orientation to Landscape");
@@ -213,7 +274,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//This method returns true if the app with provided package name is launched ,False otherwise.	
+		
+/*==============================================================================================================================
+*	 This method returns true if the app with provided package name is launched ,False otherwise.							   *
+*	 @param: none																											   *
+*	 @return: boolean																									           *
+*==============================================================================================================================*/
 	public boolean isAppLaunched(){
 		LogUtil.info("Checking if the app is launched");
 		if(driver.getPageSource().contains(LoadAndroidPropertiesFile.APP_PACKAGE_NAME)){
@@ -226,7 +292,12 @@ public class CommonMethods {
 		}
 	}
 		
-	//Launch the application in test.
+
+/*==============================================================================================================================
+*	 Launch the application in test.																                           *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void launchAppInTest(){
 		try{
 		LogUtil.info("Launching the app");	
@@ -237,7 +308,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//Shake device - Works for iOS device.
+
+/*==============================================================================================================================
+*	 Shake device - Works for iOS device.																                       *
+*	 @param: none																											   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void shakeDevice(){
 		try{
 			((IOSDriver)driver).shake();
@@ -247,7 +323,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//This methods performs swipe operation
+	
+/*==============================================================================================================================
+*	 This methods performs swipe operation.																                       *
+*	 @param: int startXIndex, int startYIndex, int endXIndex, int endYIndex, int duration									   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void swipe(int startx,int starty, int endx, int endy, int duration){
 		try{
 			LogUtil.info("Performing swipe operation");
@@ -258,7 +339,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//This method takes a WebElement as argument and clicks on it.
+
+/*==============================================================================================================================
+*	 This method takes a WebElement as argument and clicks on it.														       *
+*	 @param: WebElement																										   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void clickElement(WebElement element){
 		try{
 		LogUtil.info("Clicking the element");	
@@ -270,7 +356,11 @@ public class CommonMethods {
 		}
 	}
 	
-	//This method takes a WebElement and a String as argument and enters the string in the WebElement.
+/*==============================================================================================================================
+*	 This method takes a WebElement and a String as argument and enters the string in the WebElement.						   *
+*	 @param: WebElement, String																								   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void EnterText(WebElement element,String str){
 		try{
 			LogUtil.info("Entering text : " + str +" in the text field.");
@@ -284,7 +374,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//This method takes a WebElement as argument and returns the text of the WebElement.
+
+/*==============================================================================================================================
+*	 This method takes a WebElement as argument and returns the text of the WebElement.					                  	   *
+*	 @param: WebElement																								           *
+*	 @return: String																									       *
+*==============================================================================================================================*/
 	public String getElementText(WebElement element){
 		String text="";
 		try{
@@ -298,7 +393,12 @@ public class CommonMethods {
 		return text;
 	}
 	
-	//This method returns true if the web-element is displayed on page and returns false otherwise
+	
+/*==============================================================================================================================
+*	 This method returns true if the web-element is displayed on page and returns false otherwise					           *
+*	 @param: WebElement																								           *
+*	 @return: Boolean																									       *
+*==============================================================================================================================*/
 	public boolean isElementDisplayed(WebElement element){
 		try{
 		LogUtil.info("Checking if the element is displayed");	
@@ -316,7 +416,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//This method takes a WebElement as argument and returns true if the check-box is selected,false otherwise.
+	
+/*==============================================================================================================================
+*	 This method takes a WebElement as argument and returns true if the check-box is selected,false otherwise.			       *
+*	 @param: WebElement																								           *
+*	 @return: Boolean																									       *
+*==============================================================================================================================*/
 	public boolean isCheckBoxSelected(WebElement element){
 		boolean isCheckBoxSelected=false;	
 		try{
@@ -334,7 +439,12 @@ public class CommonMethods {
 		return isCheckBoxSelected;
 	}
 	
-	//This method takes a WebElement and String as argument and returns the elements argument as String.
+	
+/*==============================================================================================================================
+*	 This method takes a WebElement and String as argument and returns the elements argument as String.      			       *
+*	 @param: WebElement	, String 																							   *
+*	 @return: String																									       *
+*==============================================================================================================================*/
 	public String getAttribute(WebElement element,String attribute){
 		String resultAttribute="";
 		try{
@@ -348,7 +458,12 @@ public class CommonMethods {
 		return resultAttribute;
 	}
 	
-	//This method switches driver to the first frame on the page
+
+/*==============================================================================================================================
+*	 This method switches driver to the first frame on the page      			                                               *
+*	 @param: none 																						                 	   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void switchFrame(){
 		try{
 		LogUtil.info("Switcihng to frame 0");	
@@ -360,7 +475,12 @@ public class CommonMethods {
 		}
 	}
 	
-	//This method switches driver back to default frame.
+
+/*==============================================================================================================================
+*	 This method switches driver back to default frame.      			                                                       *
+*	 @param: none 																						                 	   *
+*	 @return: void																									           *
+*==============================================================================================================================*/
 	public void switchToDefaultContent(){
 		try{
 		LogUtil.info("Switching to default frame");	
