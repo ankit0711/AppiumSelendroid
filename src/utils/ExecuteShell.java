@@ -1,26 +1,20 @@
 package utils;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
-import readProperties.LoadAndroidPropertiesFile;
-
 public class ExecuteShell {
-
-
-	public void ExecuteShellCommand(String ... parameters){
-
+	public String ExecuteShellCommand(String...parameters){
 		String command= "";
 
 		for(int counter=0; counter < parameters.length ; counter++){
 			command = command + parameters[counter] + " ";
-		}
-		LogUtil.info("COMMAND: "+ command);
-		executeCommand(command);
-
+		}		
+		System.out.println("COMMAND "+ command);
+		return executeCommand(command);
 	}
-
+	
+	
 	public String executeCommand(String command) {
 
 		StringBuffer output = new StringBuffer();
@@ -30,45 +24,15 @@ public class ExecuteShell {
 			BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String line = "";
 			while ((line = input.readLine())!= null) {
-
+//				if(line.contains("Event received: serverReceivedMsg") )break;
+//				if(line.contains("TimeCheck: Exiting  time ") )break;
 				output.append(line + "\n");
-				LogUtil.info(line);
-
+//				System.out.println(line);
 			}
 		} catch (Exception e) {
-			LogUtil.info("Unable to Execute Command "+ command);
+			System.out.println("Unable to Execute Command "+ command);
 			e.printStackTrace();
 		}
-
 		return output.toString();
 	}
-
-	public String getAppPid()
-	{
-		LogUtil.info("Getting device id: ");
-
-		Process p;
-		String line = "";
-		String id = "";
-		try {
-
-			String command = "ps | grep "+ LoadAndroidPropertiesFile.APP_PACKAGE_NAME;
-			p = Runtime.getRuntime().exec(command);
-			BufferedReader input = new BufferedReader(new InputStreamReader(
-					p.getInputStream()));
-
-			line = input.readLine();
-
-			id = line.substring(10, 15);
-
-
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-		}
-		return id;
-	}
-
 }

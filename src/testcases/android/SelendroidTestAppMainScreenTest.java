@@ -23,7 +23,7 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 	 *1)Verify the screen title.
 	 *The expected title is "selendroid-test-app"
 	 *==============================================================================================================================*/
-	@Test(priority=0,enabled=false,description="Verifying the Screen Title")
+	@Test(priority=0,enabled=true,description="Verifying the Screen Title")
 	public void verifyPagetitle(){
 		try{
 		LogUtil.startTestCase("SelendroidTestAppMainScreenTest", "Verifying the screen title");
@@ -41,7 +41,7 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 	 *1)Verify the Label at the top of the page
 	 *Expected text for label is "Hello Default Locale, Selendroid-test-app!"
 	 *==============================================================================================================================*/
-	@Test(priority=1,enabled=false,description="Verifying label at the top of the page")
+	@Test(priority=1,enabled=true,description="Verifying label at the top of the page")
 	public void verifyPageHeader(){
 		try{
 		LogUtil.startTestCase("SelendroidTestAppMainScreenTest", "Verifying label at the top of the page");
@@ -59,7 +59,7 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 	 *1)Verify the label for Localization
 	 *Expected text for label is "Localization (L10n) locator test"
 	 *==============================================================================================================================*/
-	@Test(priority=2,enabled=false,description="Verifying the localization label")
+	@Test(priority=2,enabled=true,description="Verifying the localization label")
 	public void verifyPageLabelLocalizationText(){
 		try{
 		LogUtil.startTestCase("SelendroidTestAppMainScreenTest", "Verifying the localization label");
@@ -77,7 +77,7 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 	 *1)Verify the EN Button text.
 	 *Expected text on the button is EN Button.
 	 *==============================================================================================================================*/
-	@Test(priority=3,enabled=false,description="Verifying the EN Button Text")
+	@Test(priority=3,enabled=true,description="Verifying the EN Button Text")
 	public void verifyENButtonText(){
 		try{
 		LogUtil.startTestCase("SelendroidTestAppMainScreenTest", "Verifying the EN Button Text");	
@@ -100,7 +100,7 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 	 *6.Click on "I agree" button
 	 *7.Verify if the app gets dismissed.
 	 *==============================================================================================================================*/
-	@Test(priority=4,enabled=false,description="Verifying the EN Button functionality")
+	@Test(priority=4,enabled=true,description="Verifying the EN Button functionality")
 	public void testENButtonFunctionality(){
 		try{
 		LogUtil.startTestCase("SelendroidTestAppMainScreenTest", "Verifying the EN Button functionality");
@@ -129,7 +129,7 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 	 *3)Enter some text in the text field.
 	 *4)Verify that the text is being displayed in the text field.
 	 *==============================================================================================================================*/
-	@Test(priority=5,enabled=false,description="Verifying the text field functionality")
+	@Test(priority=5,enabled=true,description="Verifying the text field functionality")
 	public void myTextFieldTest(){
 		try{
 		LogUtil.startTestCase("SelendroidTestAppMainScreenTest", "Verifying the text field functionality");
@@ -152,7 +152,7 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 	 *4)Click on the check-box to select it.
 	 *5)Verify that the check-box is in selected state now.
 	 *==============================================================================================================================*/
-	@Test(priority=6,enabled=false,description="Verifying the 'I accept' check-box functionality")
+	@Test(priority=6,enabled=true,description="Verifying the 'I accept' check-box functionality")
 	public void testIAcceptAddsCheckBox(){
 		try{
 		LogUtil.startTestCase("SelendroidTestAppMainScreenTest", "Verifying the 'I accept' check-box functionality");	
@@ -171,7 +171,7 @@ public class SelendroidTestAppMainScreenTest extends TestBase{
 		
 	}
 	
-	@Test(priority=7,enabled=false,description="Verifying the progress bar functionality")
+	@Test(priority=7,enabled=true,description="Verifying the progress bar functionality")
 	public void testProgressBar(){
 		try{
 		LogUtil.startTestCase("SelendroidTestAppMainScreenTest", "Verifying the progress bar functionality");	

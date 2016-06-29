@@ -1,19 +1,11 @@
 package base;
-import java.util.logging.Logger;
-
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Keyboard;
-import org.openqa.selenium.mobile.NetworkConnection;
-import org.openqa.selenium.mobile.NetworkConnection.ConnectionType;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.seleniumhq.jetty7.io.Connection;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.NetworkConnectionSetting;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.ios.IOSDriver;
